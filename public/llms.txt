@@ -1,0 +1,110 @@
+# Sudipta Dey - Portfolio
+
+> Founding Engineer scaling products from zero to millions.
+
+## About
+
+Sudipta Dey is a Founding Engineer at an IIT Kanpur incubated startup (Transpacks Technologies), where he built the engineering team and infrastructure from scratch. He has scaled products to millions of users, closed enterprise deals with brands like Godrej, Amazon, and Indian Oil, and won global hackathons competing against thousands.
+
+- Location: Hyderabad, India
+- Email: dey.sudipta@outlook.in
+- Available for: Consulting, Technical Advisory, Full-time roles
+
+## Key Achievements
+
+- 100M+ labels processed annually
+- 100K+ app downloads
+- 20K+ MAUs across 4 countries
+- 30% cost reduction via Knative autoscaling
+- 5x deployment velocity improvement
+- Built and led 8-engineer team
+- 2 hackathon wins (MongoDB AI Hackathon, OpenText Hacknosis)
+- IIT Kanpur Incubated startup
+
+## Experience
+
+### Transpacks Technologies - Founding Engineer (Apr 2021 - Present)
+- IIT Kanpur incubated startup partnering with India Security Press
+- Led platform engineering from scratch, scaling to 100M+ events/year
+- Reduced compute costs by 30% via Knative autoscaling
+- Hired and mentored an 8-engineer cross-functional team
+- Closed enterprise deals with Godrej, Amazon, and Indian Oil
+
+### Startup Consulting - Technical Consultant (Ongoing)
+- Consulting for multiple startups from pre-seed to mid-sized stages
+- Advising on technical architecture, scalability, and engineering practices
+- Helping founders navigate 0-to-1 engineering challenges and MVP launches
+
+### NCFlexE, IIT Kanpur - Research Associate (Jun 2020 - Mar 2021)
+- Delivered 4+ R&D projects across ML, automation, and backend
+- Built Android apps with OpenCV, TensorFlow, and ML Kit
+- Managed GCP/AWS services for datasets with 100K+ records
+
+### Boston Scientific - SDE Intern (Jan 2020 - Jun 2020)
+- Developed internal web apps using PrimeFaces and ThingWorx
+- Integrated Windchill data via Swagger REST APIs
+
+## Projects
+
+### Trott (Side Project)
+AI-powered app to organize saved reels, shorts & videos. Chat with your content, extract context (locations, recipes, product specs), and find anything with semantic search.
+- Stack: Flutter, FastAPI, GCP, LLMs
+- Stats: 250+ users
+- Links: App Store, Play Store, Devpost
+
+### Capywarz (Game Dev)
+Multiplayer game built solo in Unity in 30 days. Complete game loop with mechanics and progression.
+- Stack: Unity, C#, Game Networking
+- Links: GitHub, AWS Builder Article, Devpost
+
+### Distributed Label Pipeline (Transpacks)
+High-throughput image processing system for security labels. Processes 1 Cr images in 30 mins (previously 1-4 days).
+- Stack: Python, FastAPI, GCP Cloud Run, PostgreSQL, CV
+
+### Checko App (Transpacks)
+Cross-platform apps scaled to 100K+ downloads and 20K+ MAUs across 4 countries.
+- Stack: Kotlin, Android, Firebase
+- Links: App Store, Play Store
+
+## Hackathon Wins
+
+### Mentation - Best Use of Amazon Bedrock
+MongoDB AI Hackathon (5,000+ participants)
+AI-powered mental health companion with journaling, emotion tracking, and personalized support.
+- Stack: AWS Bedrock, SageMaker, Next.js, MongoDB, Cognito
+
+### Pathsure - Best PHI & PII Solution
+OpenText Hacknosis Hackathon (Top 3% of 1968 teams)
+Secure medical document management system for patients and doctors.
+- Stack: OpenText APIs, Android, Web App, Security
+
+## Tech Stack
+
+- Languages: Python, Kotlin, TypeScript, JavaScript, C++, C#, Bash
+- Backend: FastAPI, gRPC, PostgreSQL, MongoDB, Supabase, Pub/Sub, BigQuery
+- Cloud: GCP Cloud Run, AWS Lambda, S3, EC2, SageMaker, Knative, Docker, Cloudflare
+- DevOps: GitHub Actions, Prometheus, Grafana, Cloud Tasks
+- Mobile: Android SDK, Flutter, React Native, Firebase, ML Kit
+- ML/CV: OpenCV, TensorFlow Lite
+- Frontend: React, Next.js, Tailwind CSS, Framer Motion
+
+## Writing
+
+- "How I Hired Myself Out of a Job (and Why You Should Too)" - Leadership, Startup
+- "CapyWarz: A Quirky Bullet Hell Adventure in the Human Heart" - Game Dev, AWS
+- "Setting Up Strapi on Google Cloud Run with Cloud SQL and GCP Bucket" - GCP, Strapi
+- "Exploring Google Cloud API Gateway with Google Cloud Functions" - GCP, API Gateway
+- "Exploring OCR Capabilities of ML Kit using CameraX" - Android, ML Kit
+
+## Social Links
+
+- LinkedIn: https://www.linkedin.com/in/sudipta-dey/
+- Twitter/X: https://x.com/Doom_S_Dey
+- GitHub: https://github.com/doomSDey
+- Medium: https://medium.com/@sdptd20
+
+## Contact
+
+For work inquiries, consulting, or collaboration opportunities:
+- Email: dey.sudipta@outlook.in
+- LinkedIn: https://www.linkedin.com/in/sudipta-dey/
