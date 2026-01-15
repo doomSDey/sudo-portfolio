@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import {
   Github,
   Linkedin,
@@ -151,7 +150,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mobile Menu Toggle - Accessibility Fixed */}
+          {/* Mobile Menu Toggle */}
           <button
             className="md:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -163,7 +162,7 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Mobile Nav - CSS Transition instead of Framer Motion */}
+        {/* Mobile Nav - CSS Transition */}
         <div
           id="mobile-menu"
           className={`md:hidden bg-black border-b border-white/10 overflow-hidden transition-all duration-300 ease-in-out ${
@@ -199,14 +198,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        {/* Hero Content */}
+        {/* Hero Content - CSS animation only, no JS dependency */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
-          >
+          <div className="max-w-4xl animate-slide-up">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] mb-8 drop-shadow-lg">
               Founding Engineer scaling products from <span className="text-neutral-500">zero</span> to <span className="text-white underline decoration-blue-500 underline-offset-4">millions</span>.
             </h1>
@@ -228,13 +222,13 @@ export default function Home() {
                 Contact <KeyboardHint text="C" />
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <main className="pb-0">
 
-        {/* Stats Marquee - CSS Animation instead of Framer Motion */}
+        {/* Stats Marquee - CSS Animation */}
         <div className="relative border-y border-neutral-800 bg-black overflow-hidden py-6">
           <div className="flex whitespace-nowrap animate-marquee">
             {[...STATS, ...STATS, ...STATS].map((stat, i) => (
@@ -253,13 +247,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading id="hackathons" dark>Hackathon Wins</SectionHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {HACKATHONS.map((hack, idx) => (
-                <motion.article
+              {HACKATHONS.map((hack) => (
+                <article
                   key={hack.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
                   className="relative group bg-neutral-100 border border-neutral-200 rounded-2xl p-0 hover:shadow-xl hover:shadow-neutral-200/50 transition-all overflow-hidden flex flex-col"
                 >
                   {/* Visual Header */}
@@ -284,7 +274,6 @@ export default function Home() {
                       />
                     ) : (
                       <>
-                        {/* Pixelated Dither Overlay (Dark on Light) */}
                         <div className="absolute inset-0 z-10 opacity-5 pointer-events-none"
                              style={{ backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`, backgroundSize: '4px 4px' }}
                              aria-hidden="true" />
@@ -331,7 +320,7 @@ export default function Home() {
                       )}
                     </div>
                   </div>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -343,13 +332,9 @@ export default function Home() {
             <SectionHeading id="projects">Selected Projects</SectionHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {PROJECTS.map((project) => (
-              <motion.article
+              <article
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, scale: 1.01 }}
-                className="group flex flex-col h-full bg-neutral-900/20 border border-neutral-800 hover:border-neutral-600 rounded-xl overflow-hidden transition-all duration-300"
+                className="group flex flex-col h-full bg-neutral-900/20 border border-neutral-800 hover:border-neutral-600 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01]"
               >
                 {/* Media Area */}
                 <div className="aspect-video bg-neutral-950 relative overflow-hidden group-hover:bg-neutral-900 transition-colors border-b border-neutral-800">
@@ -458,7 +443,7 @@ export default function Home() {
                     )}
                   </div>
                 </div>
-              </motion.article>
+              </article>
             ))}
             </div>
           </div>
@@ -470,12 +455,8 @@ export default function Home() {
             <SectionHeading id="experience" dark>Experience</SectionHeading>
             <div className="space-y-12 relative border-l border-neutral-200 ml-3 md:ml-6 pl-8 md:pl-12 py-2">
               {EXPERIENCE.map((job, idx) => (
-                <motion.article
+                <article
                   key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
                   className="relative"
                 >
                   <div className="absolute -left-[41px] md:-left-[57px] top-1 h-5 w-5 rounded-full bg-white border-4 border-neutral-200" aria-hidden="true" />
@@ -499,7 +480,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -566,6 +547,7 @@ export default function Home() {
                   muted
                   playsInline
                   preload="none"
+                  aria-hidden="true"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -701,7 +683,6 @@ export default function Home() {
              </button>
           </div>
         </div>
-        {/* sudo-portfolio by Sudipta Dey | https://github.com/doomSDey/sudo-portfolio */}
         <a href="https://github.com/doomSDey/sudo-portfolio" rel="author" className="hidden" aria-hidden="true">Template</a>
       </footer>
     </div>

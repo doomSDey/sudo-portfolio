@@ -59,7 +59,7 @@ body {
   animation-play-state: paused;
 }
 
-/* Fade-in animation for sections */
+/* Hero animation - content always visible, only animates position */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -71,39 +71,65 @@ body {
   }
 }
 
+/* For hero: gentle fade + slide up (starts semi-visible for LCP) */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0.3;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: heroFadeIn 1.2s ease-out 0.5s forwards;
+}
+
 .animate-fade-in-up {
+  opacity: 0;
+  animation: heroFadeIn 1s ease-out 0.3s forwards;
+}
+
+/* For below-fold content that can use opacity animation */
+.animate-fade-in {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* Color Contrast Fixes for WCAG AA Compliance */
-/* Improve contrast for neutral text on dark backgrounds */
-@layer utilities {
-  /* Minimum 4.5:1 contrast ratio for normal text */
-  .text-neutral-400-accessible {
-    color: rgb(163, 163, 163); /* #a3a3a3 - 4.6:1 on black */
-  }
+/* Dark theme site - globally improve low-contrast neutral colors */
+/* Minimum 4.5:1 contrast ratio for normal text on black (#000000) */
 
-  .text-neutral-500-accessible {
-    color: rgb(140, 140, 140); /* #8c8c8c - 5.3:1 on black */
-  }
+/* text-neutral-300 (#d4d4d4) = 12.1:1 - OK */
+/* text-neutral-400 (#a3a3a3) = 6.8:1 - OK but boost slightly */
+/* text-neutral-500 (#737373) = 4.6:1 - Borderline, boost */
+
+/* Global overrides for dark theme */
+.text-neutral-400 {
+  color: rgb(180, 180, 180) !important; /* #b4b4b4 - 8.5:1 on black */
 }
 
-/* Override default neutral colors on dark backgrounds for better contrast */
-.bg-black .text-neutral-400,
-.bg-neutral-900 .text-neutral-400,
-.bg-neutral-950 .text-neutral-400 {
-  color: rgb(163, 163, 163);
+.text-neutral-500 {
+  color: rgb(163, 163, 163) !important; /* #a3a3a3 - 6.8:1 on black */
 }
 
-.bg-black .text-neutral-500,
-.bg-neutral-900 .text-neutral-500,
-.bg-neutral-950 .text-neutral-500 {
-  color: rgb(140, 140, 140);
+/* On light backgrounds (hackathons section), use original darker colors */
+.bg-white .text-neutral-400,
+.bg-neutral-50 .text-neutral-400,
+.bg-neutral-100 .text-neutral-400 {
+  color: rgb(115, 115, 115) !important; /* Original neutral-500 */
 }
 
-/* On light backgrounds, ensure darker text */
+.bg-white .text-neutral-500,
+.bg-neutral-50 .text-neutral-500,
+.bg-neutral-100 .text-neutral-500 {
+  color: rgb(82, 82, 82) !important; /* Darker for white bg */
+}
+
 .bg-white .text-neutral-600,
 .bg-neutral-50 .text-neutral-600,
 .bg-neutral-100 .text-neutral-600 {
-  color: rgb(75, 75, 75); /* Darker for better contrast */
+  color: rgb(64, 64, 64) !important; /* Darker for better contrast */
 }

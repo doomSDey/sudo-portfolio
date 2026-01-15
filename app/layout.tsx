@@ -3,16 +3,23 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/config';
 
-// Self-hosted fonts for faster loading (no external requests)
+// Optimized static fonts with preload for fast loading
 const inter = localFont({
   src: [
     {
-      path: '../public/fonts/Inter-Variable.woff2',
+      path: '../public/fonts/Inter-Regular.woff2',
+      weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Inter-Variable-Italic.woff2',
-      style: 'italic',
+      path: '../public/fonts/Inter-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Inter-Bold.woff2',
+      weight: '700',
+      style: 'normal',
     },
   ],
   variable: '--font-inter',
