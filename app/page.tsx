@@ -678,7 +678,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 bg-black">
+      <footer className="border-t border-white/10 py-8 bg-black" data-template="sudo-portfolio">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
           <p>&copy; {new Date().getFullYear()} Sudipta Dey · veni, vidi, vici</p>
           <div className="flex items-center gap-6">
@@ -686,6 +686,8 @@ export default function Home() {
              <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})} className="hover:text-white">Back to top ↑</button>
           </div>
         </div>
+        {/* sudo-portfolio by Sudipta Dey | https://github.com/doomSDey/sudo-portfolio */}
+        <a href="https://github.com/doomSDey/sudo-portfolio" rel="author" className="hidden" aria-hidden="true">Template</a>
       </footer>
     </div>
   );

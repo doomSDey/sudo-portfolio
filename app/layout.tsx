@@ -123,6 +123,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable content" />
+        {/* Template: https://github.com/doomSDey/sudo-portfolio */}
+        <meta name="template-author" content="Sudipta Dey" />
+        <link rel="author" href="https://sudipta-dey.com" />
       </head>
       <body className="antialiased" suppressHydrationWarning>{children}</body>
     </html>

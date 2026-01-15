@@ -91,6 +91,19 @@ Edit the data in `lib/data.ts` to update:
 - Blog posts
 - Contact information
 
+## Credits
+
+Designed and built by [Sudipta Dey](https://sudipta-dey.com).
+
+If you fork this project and use it for your own portfolio, please give credit by linking back to the original:
+
+```html
+<!-- Add this to your footer or about section -->
+<a href="https://github.com/doomSDey/sudo-portfolio">Template by Sudipta Dey</a>
+```
+
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
+
+You are free to use this template for your own portfolio. Attribution is appreciated but not required by the license.
