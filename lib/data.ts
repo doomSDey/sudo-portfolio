@@ -131,11 +131,12 @@ export const EXPERIENCE = [
     period: "Apr 2021 – Present",
     location: "Hyderabad, India",
     details: [
-      "IIT Kanpur incubated startup partnering with India Security Press.",
-      "Led platform engineering from scratch, scaling to 100M+ events/year.",
-      "Reduced compute costs by 30% via Knative autoscaling.",
-      "Hired and mentored an 8-engineer cross-functional team.",
-      "Closed enterprise deals with Godrej, Amazon, and Indian Oil."
+      "IIT Kanpur incubated startup building **patented 3D PUF anti-counterfeiting tech**; partnered with multiple printing partners including India Security Press.",
+      "Led platform engineering from scratch, scaling to **100M+ label uploads/year** with **300% faster** turnaround.",
+      "**Halved tech spend** and reduced compute costs **30%** via Knative autoscaling and Cloud Run spot instances.",
+      "Scaled consumer apps to **100K+ downloads** and **20K+ MAUs** across 4 countries.",
+      "Hired and mentored **8-engineer team**; implemented CI/CD increasing deployment velocity **5×**.",
+      "Closed enterprise deals with **Godrej, Amazon, and Indian Oil** via technical pitches and ROI modeling."
     ]
   },
   {
@@ -144,9 +145,9 @@ export const EXPERIENCE = [
     period: "Ongoing",
     location: "US / Singapore / India",
     details: [
-      "Consulting for multiple startups ranging from pre-seed to mid-sized stages.",
-      "Advising on technical architecture, scalability, and engineering practices for distributed teams.",
-      "Helping founders navigate 0-to-1 engineering challenges and MVP launches."
+      "Consulting for startups ranging from **pre-seed to mid-sized** stages.",
+      "Advising on **technical architecture, scalability**, and engineering practices for distributed teams.",
+      "Helping founders navigate **0-to-1 engineering** challenges and MVP launches."
     ]
   },
   {
@@ -155,9 +156,9 @@ export const EXPERIENCE = [
     period: "Jun 2020 – Mar 2021",
     location: "Kanpur, India",
     details: [
-      "Delivered 4+ R&D projects across ML, automation, and backend.",
-      "Built Android apps with OpenCV, TensorFlow, and ML Kit.",
-      "Managed GCP/AWS services for datasets with 100K+ records."
+      "Delivered **4+ R&D projects** across ML, automation, and backend.",
+      "Built Android apps with **OpenCV, TensorFlow, and ML Kit**.",
+      "Managed GCP/AWS services for datasets with **100K+ records**."
     ]
   },
   {
@@ -173,13 +174,11 @@ export const EXPERIENCE = [
 ];
 
 export const TECH_STACK = {
-  Languages: ["Python", "Kotlin", "TypeScript", "JavaScript", "C++", "C#", "Bash"],
-  Backend: ["FastAPI", "gRPC", "PostgreSQL", "MongoDB", "Supabase", "Pub/Sub", "BigQuery"],
-  Cloud: ["GCP Cloud Run", "AWS Lambda", "S3", "EC2", "SageMaker", "Knative", "Docker", "Cloudflare"],
-  DevOps: ["GitHub Actions", "Prometheus", "Grafana", "Cloud Tasks"],
-  Mobile: ["Android SDK", "Flutter", "React Native", "Firebase", "ML Kit"],
-  "ML/CV": ["OpenCV", "TensorFlow Lite"],
-  Frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion"]
+  Languages: ["Python", "Kotlin", "TypeScript"],
+  Backend: ["FastAPI", "gRPC", "PostgreSQL", "MongoDB"],
+  Cloud: ["GCP Cloud Run", "AWS", "Knative", "Docker"],
+  DevOps: ["GitHub Actions", "Prometheus", "Grafana"],
+  Mobile: ["Android SDK", "Flutter", "Firebase"]
 };
 
 export const BLOG_POSTS = [

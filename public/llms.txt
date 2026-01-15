@@ -4,7 +4,11 @@
 
 ## About
 
-Sudipta Dey is a Founding Engineer at an IIT Kanpur incubated startup (Transpacks Technologies), where he built the engineering team and infrastructure from scratch. He has scaled products to millions of users, closed enterprise deals with brands like Godrej, Amazon, and Indian Oil, and won global hackathons competing against thousands.
+Sudipta Dey is a Founding Engineer who builds and scales. At Transpacks Technologies (IIT Kanpur incubated), he took a patented anti-counterfeiting idea from zero to 100M+ labels processed annually—architecting the platform, hiring an 8-engineer team, halving infrastructure costs, and closing enterprise deals with Godrej, Amazon, and Indian Oil.
+
+He operates at the intersection of engineering and business: writing code, designing systems, modeling ROI, and pitching to stakeholders. He has won hackathons against 5,000+ participants and consults for startups across US, Singapore, and India on technical architecture and 0-to-1 challenges.
+
+CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clubs.
 
 - Location: Hyderabad, India
 - Email: dey.sudipta@outlook.in
@@ -24,11 +28,13 @@ Sudipta Dey is a Founding Engineer at an IIT Kanpur incubated startup (Transpack
 ## Experience
 
 ### Transpacks Technologies - Founding Engineer (Apr 2021 - Present)
-- IIT Kanpur incubated startup partnering with India Security Press
-- Led platform engineering from scratch, scaling to 100M+ events/year
-- Reduced compute costs by 30% via Knative autoscaling
-- Hired and mentored an 8-engineer cross-functional team
-- Closed enterprise deals with Godrej, Amazon, and Indian Oil
+- IIT Kanpur incubated startup building patented 3D PUF anti-counterfeiting tech
+- Partnered with multiple printing partners including India Security Press
+- Led platform engineering from scratch, scaling to 100M+ label uploads/year with 300% faster turnaround
+- Halved tech spend and reduced compute costs 30% via Knative autoscaling and Cloud Run spot instances
+- Scaled consumer apps to 100K+ downloads and 20K+ MAUs across 4 countries
+- Hired and mentored 8-engineer team; implemented CI/CD increasing deployment velocity 5×
+- Closed enterprise deals with Godrej, Amazon, and Indian Oil via technical pitches and ROI modeling
 
 ### Startup Consulting - Technical Consultant (Ongoing)
 - Consulting for multiple startups from pre-seed to mid-sized stages
@@ -80,13 +86,11 @@ Secure medical document management system for patients and doctors.
 
 ## Tech Stack
 
-- Languages: Python, Kotlin, TypeScript, JavaScript, C++, C#, Bash
-- Backend: FastAPI, gRPC, PostgreSQL, MongoDB, Supabase, Pub/Sub, BigQuery
-- Cloud: GCP Cloud Run, AWS Lambda, S3, EC2, SageMaker, Knative, Docker, Cloudflare
-- DevOps: GitHub Actions, Prometheus, Grafana, Cloud Tasks
-- Mobile: Android SDK, Flutter, React Native, Firebase, ML Kit
-- ML/CV: OpenCV, TensorFlow Lite
-- Frontend: React, Next.js, Tailwind CSS, Framer Motion
+- Languages: Python, Kotlin, TypeScript
+- Backend: FastAPI, gRPC, PostgreSQL, MongoDB
+- Cloud: GCP Cloud Run, AWS, Knative, Docker
+- DevOps: GitHub Actions, Prometheus, Grafana
+- Mobile: Android SDK, Flutter, Firebase
 
 ## Writing
 

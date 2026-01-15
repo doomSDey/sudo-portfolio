@@ -48,6 +48,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_CONFIG.url,
   },
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 // JSON-LD Structured Data for SEO and LLMs
@@ -121,7 +124,7 @@ export default function RootLayout({
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable content" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased" suppressHydrationWarning>{children}</body>
     </html>
   );
 }

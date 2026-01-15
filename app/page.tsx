@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Github,
@@ -60,6 +61,12 @@ const KeyboardHint = ({ text, dark = false }: KeyboardHintProps) => (
     {text}
   </span>
 );
+
+// Parse **bold** markdown syntax to HTML
+const parseBold = (text: string) => {
+  const html = text.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold">$1</strong>');
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
 /* --- Main Component --- */
 
@@ -178,10 +185,12 @@ export default function Home() {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src={HERO_BG_IMAGE}
             alt=""
-            className="w-full h-full object-cover opacity-30"
+            fill
+            priority
+            className="object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-black/20" />
         </div>
@@ -264,10 +273,11 @@ export default function Home() {
                         className="absolute inset-0 w-full h-full grayscale"
                       />
                     ) : hack.image ? (
-                      <img
+                      <Image
                         src={hack.image}
                         alt={hack.title}
-                        className="absolute inset-0 w-full h-full object-contain bg-neutral-50"
+                        fill
+                        className="object-contain bg-neutral-50"
                       />
                     ) : (
                       <>
@@ -348,10 +358,11 @@ export default function Home() {
                       className="absolute inset-0 w-full h-full grayscale"
                     />
                   ) : project.image ? (
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   ) : (
                     <>
@@ -477,7 +488,7 @@ export default function Home() {
                     {job.details.map((detail, i) => (
                       <li key={i} className="text-neutral-700 leading-relaxed flex items-start gap-3">
                         <span className="mt-2 w-1.5 h-1.5 bg-neutral-300 rounded-full shrink-0" />
-                        {detail}
+                        {parseBold(detail)}
                       </li>
                     ))}
                   </ul>
@@ -520,10 +531,13 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="md:col-span-2 space-y-6 text-lg text-neutral-300 leading-relaxed">
                 <p>
-                  I&apos;m a Founding Engineer at an IIT Kanpur incubated startup, where I built the engineering team and infrastructure from scratch. I&apos;ve scaled products to millions of users, closed enterprise deals with brands like Godrej, Amazon, and Indian Oil, and won global hackathons competing against thousands.
+                  Founding Engineer who builds and scales. At Transpacks, I took a patented anti-counterfeiting idea from zero to 100M+ labels processed annually—architecting the platform, hiring an 8-engineer team, halving infrastructure costs, and closing enterprise deals with Godrej, Amazon, and Indian Oil.
                 </p>
                 <p>
-                  My background is in Computer Science (B.Tech, SMIT — 8.13 CGPA). I formerly served as the President of the Photography and Art Clubs. I approach engineering with a product mindset, bridging the gap between technical complexity and user delight.
+                  I operate at the intersection of engineering and business: writing code, designing systems, modeling ROI, and pitching to stakeholders. I&apos;ve won hackathons against 5,000+ participants and consult for startups across US, Singapore, and India on technical architecture and 0-to-1 challenges.
+                </p>
+                <p>
+                  CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clubs—I bring the same creative rigor to engineering problems.
                 </p>
                 <div className="pt-4">
                   <h4 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4">Interests</h4>
@@ -544,6 +558,7 @@ export default function Home() {
                   loop
                   muted
                   playsInline
+                  preload="none"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -566,28 +581,30 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid gap-4 md:gap-6">
               {BLOG_POSTS.map((post, i) => (
                 <a
                   key={i}
                   href={post.slug}
                   target="_blank"
                   rel="noreferrer"
-                  className="group block p-6 md:p-8 bg-neutral-50 border border-neutral-200 rounded-xl hover:border-black/20 hover:shadow-lg transition-all"
+                  className="group block p-5 md:p-8 bg-neutral-50 border border-neutral-200 rounded-xl hover:border-black/20 hover:shadow-lg transition-all"
                 >
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-2">
-                    <h3 className="text-xl font-bold text-black group-hover:text-blue-600 transition-colors">{post.title}</h3>
-                    <span className="text-sm font-mono text-neutral-500 shrink-0">{post.date}</span>
+                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-black group-hover:text-blue-600 transition-colors leading-tight">{post.title}</h3>
+                    <span className="text-xs md:text-sm font-mono text-neutral-500 shrink-0">{post.date}</span>
                   </div>
-                  <p className="text-neutral-600 mb-3 line-clamp-2">{post.excerpt}</p>
-                  <div className="flex items-center gap-4 text-sm text-neutral-500">
-                    <span className="flex items-center gap-1"><BookOpen size={14}/> {post.readTime}</span>
-                    <div className="flex gap-2">
-                      {post.tags.map(tag => (
-                        <span key={tag} className="text-neutral-400">#{tag}</span>
-                      ))}
+                  <p className="text-neutral-600 mb-4 text-sm md:text-base line-clamp-2">{post.excerpt}</p>
+                  <div className="flex items-center justify-between text-xs md:text-sm text-neutral-500">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1 whitespace-nowrap"><BookOpen size={14}/> {post.readTime}</span>
+                      <div className="hidden sm:flex gap-2">
+                        {post.tags.map(tag => (
+                          <span key={tag} className="text-neutral-400">#{tag}</span>
+                        ))}
+                      </div>
                     </div>
-                    <span className="ml-auto flex items-center gap-1 text-neutral-500 group-hover:text-blue-600">
+                    <span className="flex items-center gap-1 text-neutral-500 group-hover:text-blue-600 whitespace-nowrap">
                       Read more <ExternalLink size={12} />
                     </span>
                   </div>
