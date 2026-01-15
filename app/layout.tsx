@@ -1,16 +1,30 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/config';
 
-const inter = Inter({
-  subsets: ['latin'],
+// Self-hosted fonts for faster loading (no external requests)
+const inter = localFont({
+  src: [
+    {
+      path: '../public/fonts/Inter-Variable.woff2',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Inter-Variable-Italic.woff2',
+      style: 'italic',
+    },
+  ],
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrainsMono = localFont({
+  src: '../public/fonts/JetBrainsMono-Variable.woff2',
   variable: '--font-mono',
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -118,6 +132,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+        {/* Preconnect to YouTube for embedded videos */}
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

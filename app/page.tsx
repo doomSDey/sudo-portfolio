@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Github,
   Linkedin,
@@ -126,6 +126,7 @@ export default function Home() {
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.05] z-50 mix-blend-overlay"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+        aria-hidden="true"
       />
 
       {/* Navigation */}
@@ -145,40 +146,42 @@ export default function Home() {
               </button>
             ))}
             <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-full text-xs">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Available for work
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
+              <span>Available for work</span>
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {/* Mobile Menu Toggle - Accessibility Fixed */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            {isMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="md:hidden bg-black border-b border-white/10 overflow-hidden"
-            >
-              <div className="flex flex-col p-6 gap-4">
-                {NAV_LINKS.map(link => (
-                  <button
-                    key={link.key}
-                    onClick={() => handleNavClick(link.key)}
-                    className="text-left text-lg font-medium text-neutral-300 hover:text-white"
-                  >
-                    {link.name}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Nav - CSS Transition instead of Framer Motion */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden bg-black border-b border-white/10 overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="flex flex-col p-6 gap-4">
+            {NAV_LINKS.map(link => (
+              <button
+                key={link.key}
+                onClick={() => handleNavClick(link.key)}
+                className="text-left text-lg font-medium text-neutral-300 hover:text-white"
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -190,6 +193,7 @@ export default function Home() {
             alt=""
             fill
             priority
+            sizes="100vw"
             className="object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-black/20" />
@@ -219,7 +223,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => scrollTo(contactRef)}
-                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-transparent border border-neutral-700 hover:border-white focus:outline-none rounded-lg hover:bg-neutral-900/50 backdrop-blur-sm"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-transparent border border-neutral-700 hover:border-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500 rounded-lg hover:bg-neutral-900/50 backdrop-blur-sm"
               >
                 Contact <KeyboardHint text="C" />
               </button>
@@ -230,21 +234,17 @@ export default function Home() {
 
       <main className="pb-0">
 
-        {/* Stats Marquee */}
+        {/* Stats Marquee - CSS Animation instead of Framer Motion */}
         <div className="relative border-y border-neutral-800 bg-black overflow-hidden py-6">
-          <div className="flex whitespace-nowrap overflow-hidden">
-            <motion.div
-              className="flex gap-16 text-lg font-mono text-neutral-500 uppercase tracking-widest items-center"
-              animate={{ x: [0, -1000] }}
-              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-            >
-              {[...STATS, ...STATS, ...STATS].map((stat, i) => (
-                <div key={i} className="flex items-center gap-16">
-                  <span>{stat}</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                </div>
-              ))}
-            </motion.div>
+          <div className="flex whitespace-nowrap animate-marquee">
+            {[...STATS, ...STATS, ...STATS].map((stat, i) => (
+              <div key={i} className="flex items-center gap-16 mx-8">
+                <span className="text-lg font-mono text-neutral-500 uppercase tracking-widest">
+                  {stat}
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" aria-hidden="true" />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -254,7 +254,7 @@ export default function Home() {
             <SectionHeading id="hackathons" dark>Hackathon Wins</SectionHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {HACKATHONS.map((hack, idx) => (
-                <motion.div
+                <motion.article
                   key={hack.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -270,6 +270,7 @@ export default function Home() {
                         title={hack.title}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full grayscale"
                       />
                     ) : hack.image ? (
@@ -277,16 +278,19 @@ export default function Home() {
                         src={hack.image}
                         alt={hack.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        loading="lazy"
                         className="object-contain bg-neutral-50"
                       />
                     ) : (
                       <>
                         {/* Pixelated Dither Overlay (Dark on Light) */}
                         <div className="absolute inset-0 z-10 opacity-5 pointer-events-none"
-                             style={{ backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`, backgroundSize: '4px 4px' }}/>
+                             style={{ backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`, backgroundSize: '4px 4px' }}
+                             aria-hidden="true" />
                         <div className="absolute inset-0 flex items-center justify-center p-6 text-center opacity-70">
                           <div className="flex flex-col items-center">
-                            <ImageIcon size={24} className="text-neutral-400 mb-2"/>
+                            <ImageIcon size={24} className="text-neutral-400 mb-2" aria-hidden="true" />
                             <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest border border-neutral-300 px-2 py-1 rounded border-dashed">
                               {hack.imagePrompt}
                             </span>
@@ -295,13 +299,13 @@ export default function Home() {
                       </>
                     )}
                     <div className="absolute top-4 right-4 z-20">
-                      <Trophy size={24} className="text-amber-500 drop-shadow-sm" />
+                      <Trophy size={24} className="text-amber-500 drop-shadow-sm" aria-hidden="true" />
                     </div>
                   </div>
 
                   <div className="p-8 flex-1 flex flex-col">
                     <div className="inline-flex self-start items-center gap-2 px-3 py-1 bg-amber-100 border border-amber-200 text-amber-700 text-sm font-bold rounded-full mb-4">
-                      <Trophy size={14} /> {hack.badge}
+                      <Trophy size={14} aria-hidden="true" /> {hack.badge}
                     </div>
 
                     <h3 className="text-2xl font-bold text-black mb-2">{hack.title}</h3>
@@ -322,12 +326,12 @@ export default function Home() {
                     <div className="flex flex-wrap gap-4">
                       {hack.links.demo && (
                         <a href={hack.links.demo} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-black hover:text-blue-600 font-medium transition-colors">
-                          View Project <ArrowRight size={16} />
+                          View Project <ArrowRight size={16} aria-hidden="true" />
                         </a>
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </div>
@@ -339,7 +343,7 @@ export default function Home() {
             <SectionHeading id="projects">Selected Projects</SectionHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {PROJECTS.map((project) => (
-              <motion.div
+              <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -355,6 +359,7 @@ export default function Home() {
                       title={project.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full grayscale"
                     />
                   ) : project.image ? (
@@ -362,16 +367,18 @@ export default function Home() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      loading="lazy"
                       className="object-cover"
                     />
                   ) : (
                     <>
-                      <div className="absolute inset-0 z-10 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] pointer-events-none opacity-30" />
-                      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle,transparent_50%,rgba(0,0,0,0.6)_100%)] pointer-events-none" />
+                      <div className="absolute inset-0 z-10 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] pointer-events-none opacity-30" aria-hidden="true" />
+                      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle,transparent_50%,rgba(0,0,0,0.6)_100%)] pointer-events-none" aria-hidden="true" />
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                         {project.category === "Game Dev" ? <Cpu size={32} className="text-neutral-700 mb-3" /> :
-                          project.category === "Side Project" ? <Globe size={32} className="text-neutral-700 mb-3" /> :
-                          <Terminal size={32} className="text-neutral-700 mb-3" />}
+                         {project.category === "Game Dev" ? <Cpu size={32} className="text-neutral-700 mb-3" aria-hidden="true" /> :
+                          project.category === "Side Project" ? <Globe size={32} className="text-neutral-700 mb-3" aria-hidden="true" /> :
+                          <Terminal size={32} className="text-neutral-700 mb-3" aria-hidden="true" />}
                           <div className="max-w-[80%] space-y-2">
                              <div className="text-[10px] text-neutral-500 font-mono border-b border-neutral-800 pb-1 mb-2">
                                IMAGE PLACEHOLDER
@@ -416,42 +423,42 @@ export default function Home() {
                   <div className="flex flex-wrap items-center gap-4 mt-auto">
                     {project.links.live && (
                       <a href={project.links.live} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        Live Demo <ExternalLink size={12} />
+                        Live Demo <ExternalLink size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.github && (
                       <a href={project.links.github} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        GitHub <Github size={12} />
+                        GitHub <Github size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.appStore && (
                       <a href={project.links.appStore} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        App Store <Smartphone size={12} />
+                        App Store <Smartphone size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.playStore && (
                       <a href={project.links.playStore} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        Play Store <Smartphone size={12} />
+                        Play Store <Smartphone size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.article && (
                       <a href={project.links.article} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        Article <BookOpen size={12} />
+                        Article <BookOpen size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.devpost && (
                       <a href={project.links.devpost} target="_blank" rel="noreferrer" className="text-sm font-bold text-white hover:underline flex items-center gap-1">
-                        Devpost <Trophy size={12} />
+                        Devpost <Trophy size={12} aria-hidden="true" />
                       </a>
                     )}
                     {project.links.private && (
                       <span className="text-sm font-mono text-neutral-600 flex items-center gap-1 cursor-not-allowed">
-                        Private Repo <Code size={12} />
+                        Private Repo <Code size={12} aria-hidden="true" />
                       </span>
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
             </div>
           </div>
@@ -463,7 +470,7 @@ export default function Home() {
             <SectionHeading id="experience" dark>Experience</SectionHeading>
             <div className="space-y-12 relative border-l border-neutral-200 ml-3 md:ml-6 pl-8 md:pl-12 py-2">
               {EXPERIENCE.map((job, idx) => (
-                <motion.div
+                <motion.article
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -471,7 +478,7 @@ export default function Home() {
                   transition={{ delay: idx * 0.1 }}
                   className="relative"
                 >
-                  <div className="absolute -left-[41px] md:-left-[57px] top-1 h-5 w-5 rounded-full bg-white border-4 border-neutral-200" />
+                  <div className="absolute -left-[41px] md:-left-[57px] top-1 h-5 w-5 rounded-full bg-white border-4 border-neutral-200" aria-hidden="true" />
 
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-4">
                     <h3 className="text-2xl font-bold text-black">{job.company}</h3>
@@ -480,19 +487,19 @@ export default function Home() {
 
                   <div className="mb-4 text-blue-600 font-medium tracking-wide flex items-center gap-2">
                     {job.role}
-                    <span className="text-neutral-400">•</span>
+                    <span className="text-neutral-400" aria-hidden="true">•</span>
                     <span className="text-neutral-500 text-sm font-normal">{job.location}</span>
                   </div>
 
                   <ul className="space-y-3">
                     {job.details.map((detail, i) => (
                       <li key={i} className="text-neutral-700 leading-relaxed flex items-start gap-3">
-                        <span className="mt-2 w-1.5 h-1.5 bg-neutral-300 rounded-full shrink-0" />
+                        <span className="mt-2 w-1.5 h-1.5 bg-neutral-300 rounded-full shrink-0" aria-hidden="true" />
                         {parseBold(detail)}
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </div>
@@ -505,9 +512,9 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {Object.entries(TECH_STACK).map(([category, skills]) => (
                 <div key={category}>
-                  <h4 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4 border-b border-neutral-800 pb-2">
+                  <h3 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4 border-b border-neutral-800 pb-2">
                     {category}
-                  </h4>
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {skills.map(skill => (
                       <span
@@ -540,7 +547,7 @@ export default function Home() {
                   CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clubs—I bring the same creative rigor to engineering problems.
                 </p>
                 <div className="pt-4">
-                  <h4 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4">Interests</h4>
+                  <h3 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4">Interests</h3>
                   <div className="flex flex-wrap gap-3">
                     {["Traveling", "Oil Paintings", "Pottery", "Hiking", "Process Automation", "Game Dev"].map(interest => (
                       <span key={interest} className="px-3 py-1 rounded-full bg-neutral-900 text-neutral-400 text-sm border border-neutral-800">
@@ -577,7 +584,7 @@ export default function Home() {
             <div className="flex items-baseline justify-between mb-12">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black">Writing</h2>
               <a href="https://medium.com/@sdptd20" target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-2 text-neutral-500 hover:text-black transition-colors">
-                Read on Medium <ExternalLink size={16} />
+                Read on Medium <ExternalLink size={16} aria-hidden="true" />
               </a>
             </div>
 
@@ -590,24 +597,26 @@ export default function Home() {
                   rel="noreferrer"
                   className="group block p-5 md:p-8 bg-neutral-50 border border-neutral-200 rounded-xl hover:border-black/20 hover:shadow-lg transition-all"
                 >
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
-                    <h3 className="text-lg md:text-xl font-bold text-black group-hover:text-blue-600 transition-colors leading-tight">{post.title}</h3>
-                    <span className="text-xs md:text-sm font-mono text-neutral-500 shrink-0">{post.date}</span>
-                  </div>
-                  <p className="text-neutral-600 mb-4 text-sm md:text-base line-clamp-2">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs md:text-sm text-neutral-500">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 whitespace-nowrap"><BookOpen size={14}/> {post.readTime}</span>
-                      <div className="hidden sm:flex gap-2">
-                        {post.tags.map(tag => (
-                          <span key={tag} className="text-neutral-400">#{tag}</span>
-                        ))}
-                      </div>
+                  <article>
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
+                      <h3 className="text-lg md:text-xl font-bold text-black group-hover:text-blue-600 transition-colors leading-tight">{post.title}</h3>
+                      <span className="text-xs md:text-sm font-mono text-neutral-500 shrink-0">{post.date}</span>
                     </div>
-                    <span className="flex items-center gap-1 text-neutral-500 group-hover:text-blue-600 whitespace-nowrap">
-                      Read more <ExternalLink size={12} />
-                    </span>
-                  </div>
+                    <p className="text-neutral-600 mb-4 text-sm md:text-base line-clamp-2">{post.excerpt}</p>
+                    <div className="flex items-center justify-between text-xs md:text-sm text-neutral-500">
+                      <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1 whitespace-nowrap"><BookOpen size={14} aria-hidden="true" /> {post.readTime}</span>
+                        <div className="hidden sm:flex gap-2">
+                          {post.tags.map(tag => (
+                            <span key={tag} className="text-neutral-400">#{tag}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <span className="flex items-center gap-1 text-neutral-500 group-hover:text-blue-600 whitespace-nowrap">
+                        Read more <ExternalLink size={12} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </article>
                 </a>
               ))}
             </div>
@@ -628,7 +637,7 @@ export default function Home() {
                  href={`mailto:${CONTACT_INFO.email}`}
                  className="flex items-center gap-3 px-6 py-4 bg-white text-black rounded-lg font-bold hover:bg-neutral-200 transition-colors"
                >
-                 <Mail size={20} />
+                 <Mail size={20} aria-hidden="true" />
                  {CONTACT_INFO.email}
                </a>
              </div>
@@ -641,7 +650,7 @@ export default function Home() {
                  className="p-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-full transition-all"
                  aria-label="LinkedIn"
                >
-                 <Linkedin size={24} />
+                 <Linkedin size={24} aria-hidden="true" />
                </a>
                <a
                  href="https://x.com/Doom_S_Dey"
@@ -650,7 +659,7 @@ export default function Home() {
                  className="p-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-full transition-all"
                  aria-label="Twitter"
                >
-                 <Twitter size={24} />
+                 <Twitter size={24} aria-hidden="true" />
                </a>
                <a
                  href="https://github.com/doomSDey"
@@ -659,7 +668,7 @@ export default function Home() {
                  className="p-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-full transition-all"
                  aria-label="GitHub"
                >
-                 <Github size={24} />
+                 <Github size={24} aria-hidden="true" />
                </a>
                <a
                  href="https://medium.com/@sdptd20"
@@ -668,7 +677,7 @@ export default function Home() {
                  className="p-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-full transition-all"
                  aria-label="Medium"
                >
-                 <Globe size={24} />
+                 <Globe size={24} aria-hidden="true" />
                </a>
               </div>
             </div>
@@ -683,7 +692,13 @@ export default function Home() {
           <p>&copy; {new Date().getFullYear()} Sudipta Dey · veni, vidi, vici</p>
           <div className="flex items-center gap-6">
              <span>Next.js + Tailwind</span>
-             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})} className="hover:text-white">Back to top ↑</button>
+             <button
+               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})}
+               className="hover:text-white transition-colors"
+               aria-label="Back to top"
+             >
+               Back to top ↑
+             </button>
           </div>
         </div>
         {/* sudo-portfolio by Sudipta Dey | https://github.com/doomSDey/sudo-portfolio */}
