@@ -9,14 +9,14 @@ export const NAV_LINKS = [
 ] as const;
 
 export const STATS = [
-  "100M+ labels processed annually",
+  "Two AI systems in daily client use in ~7 weeks",
+  "100M+ annual label uploads",
+  "~190K daily LLM completions",
   "100K+ app downloads",
-  "20K+ MAUs",
-  "30% cost reduction",
+  "20K+ monthly active users",
+  "30% lower compute costs",
   "5× deployment velocity",
-  "8-engineer team built",
-  "2 hackathon wins",
-  "IIT Kanpur Incubated"
+  "8 engineers hired and mentored",
 ];
 
 interface HackathonLinks {
@@ -66,10 +66,20 @@ export const HACKATHONS: Hackathon[] = [
 
 export const PROJECTS = [
   {
+    id: 5,
+    title: "Move Onn",
+    category: "Side Project",
+    description: "Launched an AI breakup-recovery app for iPhone and iPad with 700 customers and $200 in monthly recurring revenue.",
+    stats: "700 customers",
+    stack: ["iOS", "AI chat", "Voice"],
+    links: { appStore: "https://apps.apple.com/in/app/move-onn-breakup-recovery/id6756257090" },
+    image: "/move-onn.webp",
+  },
+  {
     id: 1,
     title: "Trott",
     category: "Side Project",
-    description: "AI-powered app to organize saved reels, shorts & videos. Chat with your content, extract context (locations, recipes, product specs), and find anything with semantic search. Built for RevenueCat Shipathon 2025.",
+    description: "Built semantic search and retrieval-augmented chat for a short-video organizer. Find saved reels and shorts by the places, recipes, and products they mention. Built for RevenueCat Shipathon 2025.",
     stats: "250+ users",
     stack: ["Flutter", "FastAPI", "GCP", "LLMs"],
     links: {
@@ -100,9 +110,9 @@ export const PROJECTS = [
   {
     id: 3,
     title: "Distributed Label Pipeline",
-    category: "Transpacks",
-    description: "High-throughput image processing system for security labels. Ingests data from printers nationwide, runs CV checks + 2-stage human validation, and syncs to cloud. Processes 1 Cr images in 30 mins (previously 1-4 days).",
-    stats: "1 Cr in 30 min",
+    category: "Checko",
+    description: "Built a distributed pipeline for product authentication labels with computer vision, two-stage human review, and cloud sync. Cut processing time for 10 million images from 1–4 days to 30 minutes.",
+    stats: "10M images in 30 min",
     stack: ["Python", "FastAPI", "GCP Cloud Run", "PostgreSQL", "CV"],
     links: { private: true },
     image: "/pipeline.png",
@@ -111,8 +121,8 @@ export const PROJECTS = [
   {
     id: 4,
     title: "Checko App",
-    category: "Transpacks",
-    description: "Cross-platform apps scaled to 100K+ downloads and 20K+ MAUs across 4 countries.",
+    category: "Checko",
+    description: "Scaled consumer apps to 100K+ downloads and 20K+ monthly active users across four countries.",
     stats: "100K+ Downloads",
     stack: ["Kotlin", "Android", "Firebase", "Optimization"],
     links: {
@@ -124,20 +134,78 @@ export const PROJECTS = [
   }
 ];
 
-export const EXPERIENCE = [
+interface ExperienceEntry {
+  company: string;
+  role: string;
+  period: string;
+  location?: string;
+  details?: string[];
+}
+
+export const EXPERIENCE: ExperienceEntry[] = [
   {
-    company: "Transpacks Technologies",
+    company: "Methodic Labs (Deployly)",
+    role: "Staff Engineer",
+    period: "Sep 2026 – Present",
+    details: [
+      "Led architecture and delivery for **two AI systems** that reached daily client use in about **seven weeks**.",
+      "Built a Twilio/LiveKit agent that confirms appointments for two pediatric therapy clinics and writes results back to Raintree. Added a deploy gate that blocks releases during live calls and **450+ backend tests**.",
+      "Built a Next.js, PostgreSQL, and Claude platform that turns research briefs into questionnaires and Decipher survey XML, with deterministic logic checks and an **$8 model budget per study**.",
+      "Built Anderson’s Salesforce Lightning intake for land trusts and deeds with sandbox-verified prefill. Backtested an AI validation prototype on **300 historical cases**.",
+    ],
+  },
+  {
+    company: "Checko (Transpacks Technologies Pvt Ltd)",
     role: "Founding Engineer",
     period: "Apr 2021 – Present",
     location: "Hyderabad, India",
     details: [
-      "IIT Kanpur incubated startup building **patented 3D PUF anti-counterfeiting tech**; partnered with multiple printing partners including India Security Press.",
-      "Led platform engineering from scratch, scaling to **100M+ label uploads/year** with **300% faster** turnaround.",
-      "**Halved tech spend** and reduced compute costs **30%** via Knative autoscaling and Cloud Run spot instances.",
-      "Scaled consumer apps to **100K+ downloads** and **20K+ MAUs** across 4 countries.",
-      "Hired and mentored **8-engineer team**; implemented CI/CD increasing deployment velocity **5×**.",
-      "Closed enterprise deals with **Godrej, Amazon, and Indian Oil** via technical pitches and ROI modeling."
+      "Built a product authentication platform handling **100M+ annual label uploads**. Cut processing time for 10 million images from 1–4 days to **30 minutes** with a distributed pipeline.",
+      "Scaled consumer apps to **100K+ downloads** and **20K+ monthly active users** across four countries.",
+      "Cut compute costs by **30%** and halved technology spend through autoscaling and usage-based policies. Helped raise gross margin by **5 percentage points**.",
+      "Hired and mentored **eight engineers**. Increased deployment velocity **5×** with trunk-based CI/CD.",
     ]
+  },
+  {
+    company: "Creed",
+    role: "Staff Engineer",
+    period: "Nov 2025 – Aug 2026",
+    details: [
+      "Architected a multi-provider LLM layer for chat, voice, and memory. Production logs show **~190K daily completions** and **~6K recovered** by automatic failover.",
+      "Rebuilt a Celery and Vertex Gemini pipeline handling **~700K daily pushes**. Streamed inputs to prevent memory failures and gated stale chats to cut **~130K daily model requests** without reducing sends.",
+      "Improved mem0 and pgvector retrieval to surface **24% more memories** in a 30-user sample. Cut worst-case conversation compaction from **44s to 0.5s** across 113 million messages.",
+    ],
+  },
+  {
+    company: "NCFlexE, IIT Kanpur",
+    role: "Project Associate and Summer Intern",
+    period: "Jun 2020 – Mar 2021",
+    location: "Kanpur, India",
+    details: [
+      "Delivered **4+ R&D projects** across ML, automation, and backend.",
+      "Built Android apps with **OpenCV, TensorFlow, and ML Kit**.",
+      "Managed GCP/AWS services for datasets with **100K+ records**."
+    ]
+  },
+  {
+    company: "Boston Scientific",
+    role: "Software Development Engineer Intern",
+    period: "Jan 2020 – Jun 2020",
+    location: "Gurugram, India",
+    details: [
+      "Developed internal web apps using PrimeFaces and ThingWorx.",
+      "Integrated Windchill data via Swagger REST APIs."
+    ]
+  },
+  {
+    company: "The Sparks Foundation",
+    role: "Project Intern",
+    period: "May 2019 – Aug 2019",
+  },
+  {
+    company: "Manipal Institute of Technology",
+    role: "Summer Intern",
+    period: "May 2019 – Aug 2019",
   },
   {
     company: "Startup Consulting",
@@ -150,38 +218,26 @@ export const EXPERIENCE = [
       "Helping founders navigate **0-to-1 engineering** challenges and MVP launches."
     ]
   },
-  {
-    company: "NCFlexE, IIT Kanpur",
-    role: "Research Associate",
-    period: "Jun 2020 – Mar 2021",
-    location: "Kanpur, India",
-    details: [
-      "Delivered **4+ R&D projects** across ML, automation, and backend.",
-      "Built Android apps with **OpenCV, TensorFlow, and ML Kit**.",
-      "Managed GCP/AWS services for datasets with **100K+ records**."
-    ]
-  },
-  {
-    company: "Boston Scientific",
-    role: "SDE Intern",
-    period: "Jan 2020 – Jun 2020",
-    location: "Gurugram, India",
-    details: [
-      "Developed internal web apps using PrimeFaces and ThingWorx.",
-      "Integrated Windchill data via Swagger REST APIs."
-    ]
-  }
 ];
 
 export const TECH_STACK = {
   Languages: ["Python", "Kotlin", "TypeScript"],
-  Backend: ["FastAPI", "gRPC", "PostgreSQL", "MongoDB"],
+  Backend: ["FastAPI", "Next.js", "Celery", "gRPC", "PostgreSQL", "pgvector", "MongoDB"],
+  "AI and Voice": ["Claude", "Vertex AI", "LiveKit", "Twilio"],
   Cloud: ["GCP Cloud Run", "AWS", "Knative", "Docker"],
   DevOps: ["GitHub Actions", "Prometheus", "Grafana"],
-  Mobile: ["Android SDK", "Flutter", "Firebase"]
+  Mobile: ["React Native", "Android SDK", "Flutter", "Firebase"]
 };
 
 export const BLOG_POSTS = [
+  {
+    title: "The Most Expensive UPDATE Statement I’ve Ever Written",
+    excerpt: "A Google Cloud Community postmortem on a PostgreSQL migration involving 350 million rows and what it taught me about updates, autovacuum, and Cloud SQL.",
+    date: "May 20, 2026",
+    readTime: "15 min read",
+    tags: ["PostgreSQL", "Cloud SQL"],
+    slug: "https://medium.com/google-cloud/the-most-expensive-update-statement-ive-ever-written-16b29876dadb",
+  },
   {
     title: "How I Hired Myself Out of a Job (and Why You Should Too)",
     excerpt: "From solo developer to scaling a team that outperformed me — lessons in letting go, mentoring, and building systems that outlast you.",

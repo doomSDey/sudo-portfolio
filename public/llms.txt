@@ -1,14 +1,12 @@
 # Sudipta Dey - Portfolio
 
-> Founding Engineer scaling products from zero to millions.
+> Staff Engineer working on applied AI and backend systems.
 
 ## About
 
-Sudipta Dey is a Founding Engineer who builds and scales. At Transpacks Technologies (IIT Kanpur incubated), he took a patented anti-counterfeiting idea from zero to 100M+ labels processed annually—architecting the platform, hiring an 8-engineer team, halving infrastructure costs, and closing enterprise deals with Godrej, Amazon, and Indian Oil.
+Sudipta leads engineering for production AI systems at Methodic Labs and is a founding engineer at Checko, where he built a product authentication platform handling 100M+ annual label uploads. At Creed, he built backend systems for AI chat, voice, memory, and personalized notifications.
 
-He operates at the intersection of engineering and business: writing code, designing systems, modeling ROI, and pitching to stakeholders. He has won hackathons against 5,000+ participants and consults for startups across US, Singapore, and India on technical architecture and 0-to-1 challenges.
-
-CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clubs.
+B.Tech in Computer Science, Sikkim Manipal Institute of Technology, 2020 (8.13/10). Former president of the Photography and Art Clubs.
 
 - Location: Hyderabad, India
 - Email: dey.sudipta@outlook.in
@@ -16,44 +14,59 @@ CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clu
 
 ## Key Achievements
 
-- 100M+ labels processed annually
+- Two AI systems in daily client use in about seven weeks
+- 100M+ annual label uploads
+- ~190K daily LLM completions
 - 100K+ app downloads
-- 20K+ MAUs across 4 countries
-- 30% cost reduction via Knative autoscaling
+- 20K+ monthly active users across four countries
+- 30% lower compute costs
 - 5x deployment velocity improvement
-- Built and led 8-engineer team
+- Hired and mentored eight engineers
 - 2 hackathon wins (MongoDB AI Hackathon, OpenText Hacknosis)
-- IIT Kanpur Incubated startup
 
 ## Experience
 
-### Transpacks Technologies - Founding Engineer (Apr 2021 - Present)
-- IIT Kanpur incubated startup building patented 3D PUF anti-counterfeiting tech
-- Partnered with multiple printing partners including India Security Press
-- Led platform engineering from scratch, scaling to 100M+ label uploads/year with 300% faster turnaround
-- Halved tech spend and reduced compute costs 30% via Knative autoscaling and Cloud Run spot instances
-- Scaled consumer apps to 100K+ downloads and 20K+ MAUs across 4 countries
-- Hired and mentored 8-engineer team; implemented CI/CD increasing deployment velocity 5×
-- Closed enterprise deals with Godrej, Amazon, and Indian Oil via technical pitches and ROI modeling
+### Methodic Labs (Deployly) - Staff Engineer (Sep 2026 - Present)
+- Led architecture and delivery for two AI systems that reached daily client use in about seven weeks.
+- Built a Twilio/LiveKit appointment-confirmation agent with Raintree write-back, a live-call deploy gate, and 450+ backend tests.
+- Built a Next.js, PostgreSQL, and Claude questionnaire platform with Decipher XML export, deterministic logic checks, and an $8 model budget per study.
+- Built Anderson’s Salesforce Lightning intake with sandbox-verified prefill and backtested AI validation on 300 historical cases.
 
-### Startup Consulting - Technical Consultant (Ongoing)
-- Consulting for multiple startups from pre-seed to mid-sized stages
-- Advising on technical architecture, scalability, and engineering practices
-- Helping founders navigate 0-to-1 engineering challenges and MVP launches
+### Checko (Transpacks Technologies Pvt Ltd) - Founding Engineer (Apr 2021 - Present)
+- Built a product authentication platform handling 100M+ annual label uploads. Cut processing time for 10 million images from 1–4 days to 30 minutes.
+- Scaled apps to 100K+ downloads and 20K+ monthly active users across four countries.
+- Cut compute costs by 30% and halved technology spend. Helped raise gross margin by 5 percentage points.
+- Hired and mentored eight engineers. Increased deployment velocity 5× with trunk-based CI/CD.
 
-### NCFlexE, IIT Kanpur - Research Associate (Jun 2020 - Mar 2021)
+### Creed - Staff Engineer (Nov 2025 - Aug 2026)
+- Architected a multi-provider LLM layer for chat, voice, and memory. Production logs show ~190K daily completions and ~6K recovered via failover.
+- Rebuilt a Celery and Vertex Gemini pipeline handling ~700K daily pushes and cut ~130K daily model requests without reducing sends.
+- Improved mem0 and pgvector retrieval to surface 24% more memories in a 30-user sample. Cut worst-case conversation compaction from 44s to 0.5s across 113 million messages.
+
+### NCFlexE, IIT Kanpur - Project Associate and Summer Intern (Jun 2020 - Mar 2021)
 - Delivered 4+ R&D projects across ML, automation, and backend
 - Built Android apps with OpenCV, TensorFlow, and ML Kit
 - Managed GCP/AWS services for datasets with 100K+ records
 
-### Boston Scientific - SDE Intern (Jan 2020 - Jun 2020)
+### Boston Scientific - Software Development Engineer Intern (Jan 2020 - Jun 2020)
 - Developed internal web apps using PrimeFaces and ThingWorx
 - Integrated Windchill data via Swagger REST APIs
 
+### The Sparks Foundation - Project Intern (May 2019 - Aug 2019)
+
+### Manipal Institute of Technology - Summer Intern (May 2019 - Aug 2019)
+
+### Startup Consulting - Technical Consultant (Ongoing)
+- Advising startups on architecture, scalability, and MVP launches.
+
 ## Projects
 
+### Move Onn (Side Project)
+Launched an AI breakup-recovery app for iPhone and iPad with 700 customers and $200 in monthly recurring revenue.
+- [App Store](https://apps.apple.com/in/app/move-onn-breakup-recovery/id6756257090)
+
 ### Trott (Side Project)
-AI-powered app to organize saved reels, shorts & videos. Chat with your content, extract context (locations, recipes, product specs), and find anything with semantic search.
+Built semantic search and retrieval-augmented chat for a short-video organizer.
 - Stack: Flutter, FastAPI, GCP, LLMs
 - Stats: 250+ users
 - Links: App Store, Play Store, Devpost
@@ -63,12 +76,12 @@ Multiplayer game built solo in Unity in 30 days. Complete game loop with mechani
 - Stack: Unity, C#, Game Networking
 - Links: GitHub, AWS Builder Article, Devpost
 
-### Distributed Label Pipeline (Transpacks)
-High-throughput image processing system for security labels. Processes 1 Cr images in 30 mins (previously 1-4 days).
+### Distributed Label Pipeline (Checko)
+Distributed image processing system for product authentication labels. Cut processing time for 10 million images from 1–4 days to 30 minutes.
 - Stack: Python, FastAPI, GCP Cloud Run, PostgreSQL, CV
 
-### Checko App (Transpacks)
-Cross-platform apps scaled to 100K+ downloads and 20K+ MAUs across 4 countries.
+### Checko App
+Scaled consumer apps to 100K+ downloads and 20K+ monthly active users across four countries.
 - Stack: Kotlin, Android, Firebase
 - Links: App Store, Play Store
 
@@ -87,13 +100,15 @@ Secure medical document management system for patients and doctors.
 ## Tech Stack
 
 - Languages: Python, Kotlin, TypeScript
-- Backend: FastAPI, gRPC, PostgreSQL, MongoDB
+- Backend: FastAPI, Next.js, Celery, gRPC, PostgreSQL, pgvector, MongoDB
+- AI and Voice: Claude, Vertex AI, LiveKit, Twilio
 - Cloud: GCP Cloud Run, AWS, Knative, Docker
 - DevOps: GitHub Actions, Prometheus, Grafana
-- Mobile: Android SDK, Flutter, Firebase
+- Mobile: React Native, Android SDK, Flutter, Firebase
 
 ## Writing
 
+- [The Most Expensive UPDATE Statement I’ve Ever Written](https://medium.com/google-cloud/the-most-expensive-update-statement-ive-ever-written-16b29876dadb) - Google Cloud Community postmortem on a 350-million-row PostgreSQL migration
 - "How I Hired Myself Out of a Job (and Why You Should Too)" - Leadership, Startup
 - "CapyWarz: A Quirky Bullet Hell Adventure in the Human Heart" - Game Dev, AWS
 - "Setting Up Strapi on Google Cloud Run with Cloud SQL and GCP Bucket" - GCP, Strapi

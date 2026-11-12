@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/config';
+import { CONTACT_INFO, SOCIAL_LINKS, TECH_STACK } from '@/lib/data';
 
 // Optimized static fonts with preload for fast loading
 const inter = localFont({
@@ -36,14 +37,14 @@ const jetbrainsMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
-  title: 'Sudipta Dey | Founding Engineer',
-  description: 'Founding Engineer scaling products from zero to millions. Built platforms processing 100M+ events/year. Scaled apps to 100K+ downloads across 4 countries.',
-  keywords: ['Founding Engineer', 'Full Stack Developer', 'React', 'Next.js', 'FastAPI', 'Mobile Development', 'Flutter', 'Startup Engineer', 'IIT Kanpur', 'Technical Consultant'],
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
+  keywords: ['Staff Engineer', 'Founding Engineer', 'Applied AI', 'Backend Systems', 'LLM', 'Next.js', 'FastAPI', 'PostgreSQL', 'LiveKit'],
   authors: [{ name: 'Sudipta Dey', url: SITE_CONFIG.url }],
   creator: 'Sudipta Dey',
   openGraph: {
-    title: 'Sudipta Dey | Founding Engineer',
-    description: 'Founding Engineer scaling products from zero to millions.',
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
     type: 'website',
     locale: 'en_US',
     url: SITE_CONFIG.url,
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sudipta Dey | Founding Engineer',
-    description: 'Founding Engineer scaling products from zero to millions.',
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
     creator: SITE_CONFIG.twitterHandle,
   },
   robots: {
@@ -91,28 +92,18 @@ const jsonLd = {
       '@id': `${SITE_CONFIG.url}/#person`,
       name: 'Sudipta Dey',
       url: SITE_CONFIG.url,
-      email: 'dey.sudipta@outlook.in',
-      jobTitle: 'Founding Engineer',
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Transpacks Technologies',
-        description: 'IIT Kanpur incubated startup',
-      },
+      email: CONTACT_INFO.email,
+      jobTitle: ['Staff Engineer', 'Founding Engineer'],
+      worksFor: [
+        { '@type': 'Organization', name: 'Methodic Labs (Deployly)' },
+        { '@type': 'Organization', name: 'Checko (Transpacks Technologies Pvt Ltd)' },
+      ],
       alumniOf: {
         '@type': 'EducationalOrganization',
-        name: 'SMIT',
+        name: 'Sikkim Manipal Institute of Technology',
       },
-      knowsAbout: [
-        'Python', 'Kotlin', 'TypeScript', 'FastAPI', 'Flutter',
-        'React', 'Next.js', 'GCP', 'AWS', 'System Design',
-        'Mobile Development', 'Machine Learning', 'Computer Vision'
-      ],
-      sameAs: [
-        'https://www.linkedin.com/in/sudipta-dey/',
-        'https://x.com/Doom_S_Dey',
-        'https://github.com/doomSDey',
-        'https://medium.com/@sdptd20'
-      ],
+      knowsAbout: ['Applied AI', 'Backend Systems', ...Object.values(TECH_STACK).flat()],
+      sameAs: SOCIAL_LINKS.map(({ href }) => href),
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Hyderabad',
@@ -123,7 +114,7 @@ const jsonLd = {
       '@type': 'ProfilePage',
       '@id': `${SITE_CONFIG.url}/#profilepage`,
       url: SITE_CONFIG.url,
-      name: 'Sudipta Dey | Founding Engineer',
+      name: SITE_CONFIG.title,
       isPartOf: { '@id': `${SITE_CONFIG.url}/#website` },
       about: { '@id': `${SITE_CONFIG.url}/#person` },
       mainEntity: { '@id': `${SITE_CONFIG.url}/#person` },

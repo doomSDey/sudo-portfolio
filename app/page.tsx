@@ -202,10 +202,10 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-10">
           <div className="max-w-4xl animate-slide-up">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] mb-8 drop-shadow-lg">
-              Founding Engineer scaling products from <span className="text-neutral-500">zero</span> to <span className="text-white underline decoration-blue-500 underline-offset-4">millions</span>.
+              Staff Engineer for <span className="underline decoration-blue-500 underline-offset-4">applied AI</span> and backend systems.
             </h1>
             <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl leading-relaxed mb-10 drop-shadow-md">
-              Built platforms processing 100M+ events/year. Scaled apps to 100K+ downloads across 4 countries. Won global hackathons against 5000+ participants.
+              I lead engineering for production AI systems and build platforms that handle 100M+ annual label uploads.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -454,32 +454,38 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-6">
             <SectionHeading id="experience" dark>Experience</SectionHeading>
             <div className="space-y-12 relative border-l border-neutral-200 ml-3 md:ml-6 pl-8 md:pl-12 py-2">
-              {EXPERIENCE.map((job, idx) => (
+              {EXPERIENCE.map((job) => (
                 <article
-                  key={idx}
+                  key={job.company}
                   className="relative"
                 >
                   <div className="absolute -left-[41px] md:-left-[57px] top-1 h-5 w-5 rounded-full bg-white border-4 border-neutral-200" aria-hidden="true" />
 
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-4">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 mb-4">
                     <h3 className="text-2xl font-bold text-black">{job.company}</h3>
-                    <span className="font-mono text-sm text-neutral-500">{job.period}</span>
+                    <span className="shrink-0 font-mono text-sm text-neutral-500">{job.period}</span>
                   </div>
 
-                  <div className="mb-4 text-blue-600 font-medium tracking-wide flex items-center gap-2">
+                  <div className="text-blue-600 font-medium tracking-wide flex flex-wrap items-center gap-2">
                     {job.role}
-                    <span className="text-neutral-400" aria-hidden="true">•</span>
-                    <span className="text-neutral-500 text-sm font-normal">{job.location}</span>
+                    {job.location && (
+                      <>
+                        <span className="text-neutral-400" aria-hidden="true">•</span>
+                        <span className="text-neutral-500 text-sm font-normal">{job.location}</span>
+                      </>
+                    )}
                   </div>
 
-                  <ul className="space-y-3">
-                    {job.details.map((detail, i) => (
-                      <li key={i} className="text-neutral-700 leading-relaxed flex items-start gap-3">
-                        <span className="mt-2 w-1.5 h-1.5 bg-neutral-300 rounded-full shrink-0" aria-hidden="true" />
-                        {parseBold(detail)}
-                      </li>
-                    ))}
-                  </ul>
+                  {job.details && (
+                    <ul className="mt-4 space-y-3">
+                      {job.details.map((detail) => (
+                        <li key={detail} className="text-neutral-700 leading-relaxed flex items-start gap-3">
+                          <span className="mt-2 w-1.5 h-1.5 bg-neutral-300 rounded-full shrink-0" aria-hidden="true" />
+                          {parseBold(detail)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </article>
               ))}
             </div>
@@ -519,13 +525,13 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="md:col-span-2 space-y-6 text-lg text-neutral-300 leading-relaxed">
                 <p>
-                  Founding Engineer who builds and scales. At Transpacks, I took a patented anti-counterfeiting idea from zero to 100M+ labels processed annually—architecting the platform, hiring an 8-engineer team, halving infrastructure costs, and closing enterprise deals with Godrej, Amazon, and Indian Oil.
+                  At Methodic Labs, I led architecture and delivery for a voice agent and a survey drafting platform that both reached daily client use in about seven weeks. At Creed, I built backend systems for AI chat, voice, memory, and personalized notifications.
                 </p>
                 <p>
-                  I operate at the intersection of engineering and business: writing code, designing systems, modeling ROI, and pitching to stakeholders. I&apos;ve won hackathons against 5,000+ participants and consult for startups across US, Singapore, and India on technical architecture and 0-to-1 challenges.
+                  As a founding engineer at Checko, I built a product authentication platform that handles 100M+ annual label uploads. I hired and mentored eight engineers, and our work on autoscaling and usage-based policies cut compute costs by 30%.
                 </p>
                 <p>
-                  CS background from SMIT (8.13 CGPA). Former President of Photography and Art Clubs—I bring the same creative rigor to engineering problems.
+                  I earned a B.Tech in Computer Science from Sikkim Manipal Institute of Technology in 2020 (8.13/10). I also served as president of the Photography and Art Clubs.
                 </p>
                 <div className="pt-4">
                   <h3 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-4">Interests</h3>
